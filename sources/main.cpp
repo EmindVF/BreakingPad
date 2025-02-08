@@ -481,7 +481,7 @@ void editorSave() {
 //cipher
 void editorCipher(){
     char* tempName = editorPrompt(const_cast<char*>("Method (\"1\"-Caesar,"
-        "\"2\"-Substitution,\"3\"Transposition): %s (ESC to cancel)"));
+        "\"2\"-Substitution,\"3\"-Transposition): %s (ESC to cancel)"));
     if (tempName == NULL) {
         editorSetStatusMessage("Cipher aborted");
         return;
@@ -546,9 +546,9 @@ void cipherCaesar(){
     dest[2] = t;
     dest[len+1+2]=0;
 
-    writeFile(const_cast<char*>("last_source.txt"), source, &e);
+    //writeFile(const_cast<char*>("last_source.txt"), source, &e);
     //writeFile(const_cast<char*>("last_new_source.txt"), new_source, &e);
-    writeFile(const_cast<char*>("last_dest_tran_ci.txt"), dest, &e);
+    //writeFile(const_cast<char*>("last_dest_tran_ci.txt"), dest, &e);
 
     aCipherCaesar(source, dest+3, &t);
     writeFile(tempName, dest, &e);
@@ -882,6 +882,7 @@ void editorDecipher(){
     char* dest;
     readFile(tempName, &dest, &e);
     if(e){
+        editorSetStatusMessage("kek");
         free(tempName);
         editorSetStatusMessage("There was an error opening the file");
         return;
