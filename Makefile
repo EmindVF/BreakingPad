@@ -1,4 +1,5 @@
-build:
+build: sources
+	mkdir -p objects
 	nasm -f elf64 ./sources/cipher_caesar.asm -o ./objects/cipher_caesar.o
 	nasm -f elf64 ./sources/cipher_substitution.asm -o ./objects/cipher_substitution.o
 	nasm -f elf64 ./sources/cipher_transposition.asm -o ./objects/cipher_transposition.o
@@ -10,6 +11,8 @@ build:
 	nasm -f elf64 ./sources/write_file.asm -o ./objects/write_file.o
 	g++ -c ./sources/main.cpp -o ./objects/main.o
 	g++ -no-pie -o breakingpag ./objects/*.o
-
+	rm -rf objects
+	
 clean: 
+	rm -rf objects
 	rm -f breakingpag
